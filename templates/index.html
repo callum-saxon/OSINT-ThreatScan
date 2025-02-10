@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>OSINT Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    h1 {
+      color: #004080;
+    }
+    .item {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+    .risk {
+      color: #d00;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>OSINT Threat Intelligence</h1>
+  <div id="items">
+    {% for doc in items %}
+      <div class="item">
+        <h3>{{ doc['title'] }}</h3>
+        <p><strong>Source:</strong> {{ doc['source'] }}</p>
+        <p><strong>Risk Score:</strong> <span class="risk">{{ doc['risk_score'] }}</span></p>
+        <p>{{ doc['content'][:300] }}...</p>
+        {% if doc['url'] %}
+          <a href="{{ doc['url'] }}" target="_blank">Read More</a>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</body>
+</html>
